@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resume Builder</title>
+
+<style>
+body{
+    font-family:Arial,sans-serif;
+    background:#f4f4f4;
+    margin:0;
+    padding:20px;
+}
+
+.container{
+    max-width:1000px;
+    margin:auto;
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.form-box,.resume-box{
+    flex:1;
+    min-width:300px;
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+input,textarea{
+    width:100%;
+    padding:10px;
+    margin:8px 0;
+    border:1px solid #ccc;
+    border-radius:5px;
+}
+
+button{
+    background:#2563eb;
+    color:white;
+    border:none;
+    padding:12px 20px;
+    border-radius:5px;
+    cursor:pointer;
+    margin-top:10px;
+}
+
+button:hover{
+    background:#1d4ed8;
+}
+
+.resume-box h1{
+    margin-bottom:5px;
+}
+
+.resume-box h3{
+    color:#2563eb;
+    margin-top:20px;
+}
+</style>
+</head>
+<body>
+
+<h1 align="center">Resume Builder</h1>
+
+<div class="container">
+
+<div class="form-box">
+<h2>Enter Details</h2>
+
+<input type="text" id="name" placeholder="Full Name">
+
+<input type="email" id="email" placeholder="Email">
+
+<input type="text" id="phone" placeholder="Phone">
+
+<textarea id="education" rows="4" placeholder="Education"></textarea>
+
+<textarea id="skills" rows="4" placeholder="Skills"></textarea>
+
+<textarea id="experience" rows="4" placeholder="Experience"></textarea>
+
+<button onclick="generateResume()">Generate Resume</button>
+<button onclick="window.print()">Download PDF</button>
+
+</div>
+
+<div class="resume-box" id="resume">
+
+<h1>Your Name</h1>
+<p>Email | Phone</p>
+
+<h3>Education</h3>
+<p>Education details</p>
+
+<h3>Skills</h3>
+<p>Skills details</p>
+
+<h3>Experience</h3>
+<p>Experience details</p>
+
+</div>
+
+</div>
+
+<script>
+function generateResume(){
+
+document.getElementById("resume").innerHTML = `
+<h1>${document.getElementById("name").value}</h1>
+
+<p>
+${document.getElementById("email").value}<br>
+${document.getElementById("phone").value}
+</p>
+
+<h3>Education</h3>
+<p>${document.getElementById("education").value.replace(/\n/g,'<br>')}</p>
+
+<h3>Skills</h3>
+<p>${document.getElementById("skills").value.replace(/\n/g,'<br>')}</p>
+
+<h3>Experience</h3>
+<p>${document.getElementById("experience").value.replace(/\n/g,'<br>')}</p>
+`;
+}
+</script>
+
+</body>
+</html>
